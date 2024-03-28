@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Văn Nhân</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* CSS cho hiệu ứng thu nhỏ */
+    #no.shrinking {
+      transform: scale(0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="boxheart">
+    <div class="heart"><h1>Ấn vô đây nè</h1></div>
+    <div class="beat"></div>
+  </div>
+  <div class="boxchoose">
+    <h2>Văn Nhân có dễ thương honggg</h2>
+    <img
+      src="https://media.giphy.com/media/bKyQb654tHDq72daXJ/giphy.gif"
+      alt=""
+    />
+    <div class="listbutton">
+      <button id="no">không</button>
+      <button id="yes">Có</button>
+    </div>
+  </div>
+  <div class="popup">
+    <div class="inner">
+      <h3>Haizzz tuii biết tuii dễ thương rồi</h3>
+      <img
+        src="https://media.giphy.com/media/8cgf7z1wtBSusvxkDp/giphy.gif"
+        alt=""
+      />
+      <p>Đừng khenn tui <span>Dễ Thương</span> nữa tuii ngại</p>
+    </div>
+  </div>
+  <script>
+    const noBtn = document.querySelector("#no");
+    const yesBtn = document.querySelector("#yes");
+    let boxheart = document.querySelector(".boxheart");
+    let boxchoose = document.querySelector(".boxchoose");
+    let popup = document.querySelector(".popup");
+
+    let count = 0; // Biến đếm số lần rê chuột vào nút "không"
+
+    boxheart.addEventListener("click", function () {
+      boxheart.classList.add("active");
+      boxchoose.classList.add("active");
+    });
+
+    yesBtn.addEventListener("click", function () {
+      popup.classList.add("active");
+    });
+
+    noBtn.addEventListener("mouseenter", () => {
+      count++; // Tăng biến đếm mỗi lần rê chuột vào nút "không"
+
+      const top = Math.floor(Math.random() * window.innerHeight);
+      const left = Math.floor(Math.random() * window.innerWidth);
+
+      noBtn.style.top = `${top}px`;
+      noBtn.style.left = `${left}px`;
+
+      if (count >= 10) { // Kiểm tra nếu biến đếm >= 10
+        noBtn.classList.add("shrinking"); // Thêm class "shrinking" để áp dụng hiệu ứng thu nhỏ
+      }
+    });
+
+    noBtn.addEventListener("transitionend", () => {
+      if (count >= 10) {
+        noBtn.style.display = "none"; // Ẩn nút sau khi kết thúc hiệu ứng thu nhỏ
+      }
+    });
+  </script>
+</body>
+</html>
